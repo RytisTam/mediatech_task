@@ -3,10 +3,11 @@
 {% block title %}Asset{% endblock %}
 
 {% block body %}
-    <h1>Asset</h1>
+    <div class="container flex-centere">
+        <h1>Asset</h1>
 
-    <table class="table">
-        <tbody>
+        <table class="table">
+            <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ asset.id }}</td>
@@ -23,20 +24,14 @@
                 <th>Amount</th>
                 <td>{{ asset.amount }}</td>
             </tr>
-            <tr>
-                <th>ValueInUsd</th>
-                <td>{{ asset.valueInUsd }}</td>
-            </tr>
-            <tr>
-                <th>UpdatedAt</th>
-                <td>{{ asset.updatedAt ? asset.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-    <a href="{{ path('app_asset_index') }}">back to list</a>
+        <a class="table-btn" href="{{ path('app_asset_index') }}">Back to list</a>
 
-    <a href="{{ path('app_asset_edit', {'id': asset.id}) }}">edit</a>
+        <a class="table-btn" href="{{ path('app_asset_edit', {'id': asset.id}) }}">Edit</a>
 
-    {{ include('asset/_delete_form.html.twig') }}
+
+        {{ include('asset/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

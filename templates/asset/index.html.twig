@@ -3,41 +3,44 @@
 {% block title %}Asset index{% endblock %}
 
 {% block body %}
-    <h1>Asset index</h1>
+    <div class="container">
+        <h1 class="text-3xl font-bold underline asset-title">Your assets</h1>
 
-    <table class="table">
-        <thead>
+        <table class="table">
+            <thead>
             <tr>
-                <th>Id</th>
                 <th>Label</th>
                 <th>Currency</th>
                 <th>Amount</th>
-                <th>ValueInUsd</th>
-                <th>UpdatedAt</th>
-                <th>actions</th>
+                <th>USD Value</th>
+                <th class="text-align-right">actions</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for asset in assets %}
-            <tr>
-                <td>{{ asset.id }}</td>
-                <td>{{ asset.label }}</td>
-                <td>{{ asset.currency }}</td>
-                <td>{{ asset.amount }}</td>
-                <td>{{ asset.valueInUsd }}</td>
-                <td>{{ asset.updatedAt ? asset.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_asset_show', {'id': asset.id}) }}">show</a>
-                    <a href="{{ path('app_asset_edit', {'id': asset.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for asset in assets %}
+                <tr>
+                    <td>{{ asset.label }}</td>
+                    <td>{{ asset.currency }}</td>
+                    <td>{{ asset.amount }}</td>
+                    <td>${{ asset.valueInUSD | number_format(2)}}</td>
+                    <td>
+                        <a class="table-btn" href="{{ path('app_asset_show', {'id': asset.id}) }}">show</a>
+                        <a class="table-btn" href="{{ path('app_asset_edit', {'id': asset.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+            {% endfor %}
 
-    <a href="{{ path('app_asset_new') }}">Create new</a>
+            </tbody>
+        </table>
+        <div class="table-bottom-row">
+            <a class="table-btn" href="{{ path('app_asset_new') }}">Create new</a>
+            <p class="total-value">Total assets value: ${{ totalValueInUSD | number_format(2) }}</p>
+        </div>
+
+
+    </div>
 {% endblock %}

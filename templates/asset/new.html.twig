@@ -3,9 +3,11 @@
 {% block title %}New Asset{% endblock %}
 
 {% block body %}
-    <h1>Create new Asset</h1>
+    <div class="container flex-centered">
+        <h1>Create new Asset</h1>
 
-    {{ include('asset/_form.html.twig') }}
+        {{ include('asset/_form.html.twig') }}
 
-    <a href="{{ path('app_asset_index') }}">back to list</a>
+        <a class="table-btn" href="{{ path('app_asset_index') }}">Back to list</a>
+    </div>
 {% endblock %}
