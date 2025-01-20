@@ -19,6 +19,9 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
-
+    App\Service\CoinMarketCapService:
+        arguments:
+            $apiBaseUrl: '%env(COINMARKETCAP_APIURL)%'
+            $apiKey: '%env(COINMARKETCAP_APIKEY)%'
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
